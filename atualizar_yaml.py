@@ -42,6 +42,7 @@ with open('dados.csv', newline='', encoding='utf-8') as csvfile:
         yaml_data.append(entrada)
 
 # Exporta com indentação correta
+print("Salvando em projetos.yaml...")
 with open('projetos.yaml', 'w', encoding='utf-8') as f:
     yaml.dump(
         yaml_data,
@@ -49,5 +50,6 @@ with open('projetos.yaml', 'w', encoding='utf-8') as f:
         allow_unicode=True,
         sort_keys=False,
         default_flow_style=False,
-        indent=2  # Garante indentação de 2 espaços
+        indent=2
     )
+print("Arquivo salvo!")

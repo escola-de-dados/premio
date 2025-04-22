@@ -19,8 +19,12 @@ mapa_campos = {
     'image': 'image'  # Agora pega da coluna "Imagem de destaque"
 }
 
-# Lista para armazenar os dados que irão para o arquivo YAML
-yaml_data = []
+# Tenta carregar dados YAML existentes (ou inicializa vazio)
+try:
+    with open('projetos.yaml', 'r', encoding='utf-8') as f:
+        yaml_data = yaml.safe_load(f) or []
+except FileNotFoundError:
+    yaml_data = []
 
 # Lê e converte dados do CSV
 with open('dados.csv', newline='', encoding='utf-8') as csvfile:
@@ -31,11 +35,13 @@ with open('dados.csv', newline='', encoding='utf-8') as csvfile:
             valor = row.get(campo_csv, "").strip()
             if campo_yaml == 'image':  # Adiciona o caminho correto para o campo image
                 valor = f"images/edicoes/2024/{valor}"
+            if campo_yaml == 'title':  # Adiciona aspas ao redor do título
+                valor = f"\"{valor}\""
             entrada[campo_yaml] = valor
         entrada['ano'] = '2024'  # Ano fixo
         yaml_data.append(entrada)
 
-# Exporta os dados para o arquivo 'projetos.yaml'
+# Exporta com indentação correta
 with open('projetos.yaml', 'w', encoding='utf-8') as f:
     yaml.dump(
         yaml_data,
@@ -43,7 +49,7 @@ with open('projetos.yaml', 'w', encoding='utf-8') as f:
         allow_unicode=True,
         sort_keys=False,
         default_flow_style=False,
-        indent=2
+        indent=2  # Garante indentação de 2 espaços
     )
 
 print("Arquivo 'projetos.yaml' criado com sucesso!")

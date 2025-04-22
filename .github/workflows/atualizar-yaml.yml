@@ -23,8 +23,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install pyyaml
 
+      - name: Verificar diretório atual (PWD)
+        run: pwd  # Isso vai imprimir o diretório onde o script está sendo executado
+
+      - name: Listar arquivos no diretório
+        run: ls -l  # Isso vai listar todos os arquivos do diretório para ver se o 'projetos.yaml' está presente
+
       - name: Rodar script para gerar YAML
         run: python atualizar_yaml.py
+
+      - name: Verificar se o arquivo foi criado após o script
+        run: ls -l projetos.yaml  # Isso vai listar 'projetos.yaml' se ele foi criado corretamente
 
       - name: Commit e Push se houver mudanças
         run: |
@@ -32,6 +41,5 @@ jobs:
           git config user.email "github-actions@github.com"
           git add projetos.yaml
           git diff --quiet || (
-            git commit -m "Atualiza projetos.yaml com dados do CSV"
-            git push
+            git commit -m "Atualiza projetos.yaml com dados do CSV" && git push
           )

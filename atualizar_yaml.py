@@ -3,7 +3,7 @@ import yaml
 
 # Mapeamento dos campos do CSV para os campos do YAML
 mapa_campos = {
-    'title': 'title',
+    'title': '"title"',
     'project_url': 'Link',
     'veiculo': 'veiculo',
     'autoria': 'autoria',

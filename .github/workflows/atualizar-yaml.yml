@@ -35,11 +35,16 @@ jobs:
       - name: Verificar se o arquivo foi criado após o script
         run: ls -l projetos.yaml  # Isso vai listar 'projetos.yaml' se ele foi criado corretamente
 
+      - name: Adicionar projetos.yaml ao Git
+        run: |
+          git status  # Verifique se o arquivo projetos.yaml foi detectado pelo Git
+          git add projetos.yaml
+          git status  # Verifique novamente após o git add
+
       - name: Commit e Push se houver mudanças
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add projetos.yaml
           git diff --quiet || (
             git commit -m "Atualiza projetos.yaml com dados do CSV" && git push
           )

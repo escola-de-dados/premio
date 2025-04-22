@@ -1,39 +1,43 @@
-name: Atualizar template.yaml com dados.csv
+name: Atualizar YAML
 
 on:
   push:
-    paths:
-      - 'dados.csv'
+    branches:
+      - main
 
 jobs:
-  atualizar:
+  update_yaml:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout do código
-      uses: actions/checkout@v3
+      - name: Checkout do código
+        uses: actions/checkout@v2
 
-    - name: 🔍 Listar arquivos (debug)
-      run: ls -R
+      - name: Verificar estrutura de arquivos (debug)
+        run: |
+          echo "Diretório atual: $(pwd)"
+          ls -lah
+          ls -lah atualizar_yaml.py || echo "Script NÃO encontrado!"
 
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
+      - name: Configurar Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
 
-    - name: Instalar dependências
-      run: pip install pyyaml
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml pandas
 
-    - name: Rodar script Python
-      run: python atualizar_yaml.py
+      - name: Rodar script Python
+        run: python atualizar_yaml.py
 
-    - name: Commit e Push se houver mudanças
-      run: |
-        git config user.name "github-actions"
-        git config user.email "github-actions@github.com"
-    
-        # Verifica se há mudanças no arquivo e faz o commit e push
-        git add template.yaml
-        git diff --quiet || (
-        git commit -m "Atualiza template.yaml com dados do CSV"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
-        )
+      - name: Commit e Push se houver mudanças
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add projetos.yml
+          git diff --quiet || (
+            git commit -m "Atualiza projetos.yml com dados do CSV"
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
+          )

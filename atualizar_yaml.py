@@ -3,20 +3,20 @@ import yaml
 
 # Mapeamento dos campos do CSV para os campos do YAML
 mapa_campos = {
-    'title': 'Título do trabalho',
+    'title': 'title',
     'project_url': 'link',
-    'veiculo': 'Veículo ou organização',
-    'autoria': 'Autores(as) do trabalho',
-    'data': 'Data de publicação',
-    'resumo': 'Resumo do trabalho',
-    'relevância': 'Relevância',
-    'originalidade': 'Originalidade',
-    'metodologia': 'Metodologia',
-    'uf': 'UF',
-    'tipo_inscricao': 'Categoria_inscrita',
-    'formato': 'Formato',
-    'category': 'Categoria_inscrita',
-    'image': 'Imagem de destaque'  # Agora pega da coluna "Imagem de destaque"
+    'veiculo': 'veiculo',
+    'autoria': 'autoria',
+    'data': 'data',
+    'resumo': 'resumo',
+    'relevância': 'relevância',
+    'originalidade': 'originalidade',
+    'metodologia': 'metodologia',
+    'uf': 'uf',
+    'tipo_inscricao': 'tipo_inscricao',
+    'formato': 'formato',
+    'category': 'tipo_inscricao',
+    'image': 'image'  # Agora pega da coluna "Imagem de destaque"
 }
 
 # Tenta carregar dados YAML existentes (ou inicializa vazio)

@@ -48,5 +48,6 @@ jobs:
           git add projetos.yaml  # Adiciona o arquivo ao índice
           git status  # Verifique o status para garantir que o arquivo está no índice
           git diff --quiet || (  # Só faz commit se houver diferença
-          git commit -m "Atualiza projetos.yaml com dados do CSV" && git push
+            git commit -m "Atualiza projetos.yaml com dados do CSV" 
           )
+          git push  # Força o push independentemente do git diff

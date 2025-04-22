@@ -12,6 +12,9 @@ jobs:
     - name: Checkout do código
       uses: actions/checkout@v3
 
+    - name: 🔍 Listar arquivos (debug)
+      run: ls -R
+
     - name: Setup Python
       uses: actions/setup-python@v4
       with:

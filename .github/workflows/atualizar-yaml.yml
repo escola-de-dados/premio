@@ -27,6 +27,10 @@ jobs:
       run: |
         git config user.name "github-actions"
         git config user.email "github-actions@github.com"
+    
+        # Verifica se há mudanças no arquivo e faz o commit e push
         git add template.yaml
-        git diff --quiet && git diff --staged --quiet || git commit -m "Atualiza template.yaml com dados do CSV"
-        git push
+        git diff --quiet || (
+        git commit -m "Atualiza template.yaml com dados do CSV"
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
+        )

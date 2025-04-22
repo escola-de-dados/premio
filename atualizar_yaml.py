@@ -21,7 +21,7 @@ mapa_campos = {
 
 # Tenta carregar dados YAML existentes (ou inicializa vazio)
 try:
-    with open('template.yaml', 'r', encoding='utf-8') as f:
+    with open('projetos.yaml', 'r', encoding='utf-8') as f:
         yaml_data = yaml.safe_load(f) or []
 except FileNotFoundError:
     yaml_data = []

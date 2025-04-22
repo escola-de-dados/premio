@@ -1,0 +1,32 @@
+name: Atualizar template.yaml com dados.csv
+
+on:
+  push:
+    paths:
+      - 'dados.csv'
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Instalar dependências
+      run: pip install pyyaml
+
+    - name: Rodar script Python
+      run: python atualizar_yaml.py
+
+    - name: Commit e Push se houver mudanças
+      run: |
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        git add template.yaml
+        git diff --quiet && git diff --staged --quiet || git commit -m "Atualiza template.yaml com dados do CSV"
+        git push

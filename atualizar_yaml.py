@@ -3,20 +3,20 @@ import yaml
 
 # Mapeamento dos campos do CSV para os campos do YAML
 mapa_campos = {
-    'title': 'title',
+    'title': 'Título do trabalho',
     'project_url': 'link',
-    'veiculo': 'veiculo',
-    'autoria': 'autoria',
-    'data': 'data',
-    'resumo': 'resumo',
-    'relevância': 'relevância',
-    'originalidade': 'originalidade',
-    'metodologia': 'metodologia',
-    'uf': 'uf',
-    'tipo_inscricao': 'tipo_inscricao',
-    'formato': 'formato',
-    'category': 'tipo_inscricao',
-    'image': 'image'  # Agora pega da coluna "Imagem de destaque"
+    'veiculo': 'Veículo ou organização',
+    'autoria': 'Autores(as) do trabalho',
+    'data': 'Data de publicação',
+    'resumo': 'Resumo do trabalho',
+    'relevância': 'Relevância',
+    'originalidade': 'Originalidade',
+    'metodologia': 'Metodologia',
+    'uf': 'UF',
+    'tipo_inscricao': 'Categoria_inscrita',
+    'formato': 'Formato',
+    'category': 'Categoria_inscrita',
+    'image': 'Imagem de destaque'  # Agora pega da coluna "Imagem de destaque"
 }
 
 # Tenta carregar dados YAML existentes (ou inicializa vazio)
@@ -26,12 +26,15 @@ try:
 except FileNotFoundError:
     yaml_data = []
 
+# Adicionar prints de debug
+print(f"Dados existentes no YAML: {yaml_data}")
+print("Lendo o arquivo CSV...")
+
 # Lê e converte dados do CSV
 with open('dados.csv', newline='', encoding='utf-8') as csvfile:
     reader = csv.DictReader(csvfile)
-    rows = list(reader)
-    print(f"Total de linhas lidas no CSV: {len(rows)}")
     for row in reader:
+        print(f"Lendo linha do CSV: {row}")  # Print para ver cada linha do CSV
         entrada = {}
         for campo_yaml, campo_csv in mapa_campos.items():
             valor = row.get(campo_csv, "").strip()
@@ -41,8 +44,10 @@ with open('dados.csv', newline='', encoding='utf-8') as csvfile:
         entrada['ano'] = '2024'  # Ano fixo
         yaml_data.append(entrada)
 
+# Verificando se os dados foram adicionados corretamente
+print(f"Entradas preparadas para salvar no YAML: {yaml_data}")
+
 # Exporta com indentação correta
-print("Salvando em projetos.yaml...")
 with open('projetos.yaml', 'w', encoding='utf-8') as f:
     yaml.dump(
         yaml_data,
@@ -52,4 +57,5 @@ with open('projetos.yaml', 'w', encoding='utf-8') as f:
         default_flow_style=False,
         indent=2
     )
-print("Arquivo salvo!")
+
+print("Arquivo 'projetos.yaml' atualizado com sucesso.")

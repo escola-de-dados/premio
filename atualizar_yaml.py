@@ -40,7 +40,7 @@ with open('dados.csv', newline='', encoding='utf-8') as csvfile:
         yaml_data.append(entrada)
 
 # Exporta com indentação correta
-with open('template.yaml', 'w', encoding='utf-8') as f:
+with open('projetos.yaml', 'w', encoding='utf-8') as f:
     yaml.dump(
         yaml_data,
         f,

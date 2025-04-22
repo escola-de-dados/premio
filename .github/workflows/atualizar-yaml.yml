@@ -45,6 +45,8 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git diff --quiet || (
-            git commit -m "Atualiza projetos.yaml com dados do CSV" && git push
+          git add projetos.yaml  # Adiciona o arquivo ao índice
+          git status  # Verifique o status para garantir que o arquivo está no índice
+          git diff --quiet || (  # Só faz commit se houver diferença
+          git commit -m "Atualiza projetos.yaml com dados do CSV" && git push
           )

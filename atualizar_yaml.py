@@ -29,6 +29,8 @@ except FileNotFoundError:
 # Lê e converte dados do CSV
 with open('dados.csv', newline='', encoding='utf-8') as csvfile:
     reader = csv.DictReader(csvfile)
+    rows = list(reader)
+    print(f"Total de linhas lidas no CSV: {len(rows)}")
     for row in reader:
         entrada = {}
         for campo_yaml, campo_csv in mapa_campos.items():

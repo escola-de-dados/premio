@@ -23,13 +23,14 @@ A cada push na branch main, o GitHub Action executa os seguintes passos:
 - Comita e envia automaticamente as mudanças para o repositório.
 
 ## Estrutura dos arquivos
-
+```
 ├── atualizar_yaml.py     # Script Python que processa o CSV e gera o YAML
 ├── dados.csv             # Fonte de dados (entrada)
 ├── projetos.yaml          # Arquivo YAML gerado automaticamente
 └── .github/
     └── workflows/
         └── atualizar_yaml.yml   # Arquivo do GitHub Actions
+```
 
 ## Como utilizar
 

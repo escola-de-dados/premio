@@ -14,13 +14,13 @@ A cada push na branch main, o GitHub Action executa os seguintes passos:
 
 4. Executa o script `atualizar_yaml.py`, que:
 
-- Lê os dados do arquivo `dados.csv`;
+    - Lê os dados do arquivo `dados.csv`;
 
-- Cria ou atualiza o arquivo `projetos.yaml`;
+    - Cria ou atualiza o arquivo `projetos.yaml`;
 
-- Formata os dados no formato correto, com indentação adequada e título entre aspas.
+    - Formata os dados no formato correto, com indentação adequada e título entre aspas.
 
-- Comita e envia automaticamente as mudanças para o repositório.
+    - Comita e envia automaticamente as mudanças para o repositório.
 
 ## Estrutura dos arquivos
 ```

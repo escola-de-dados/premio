@@ -33,11 +33,14 @@ A cada push na branch main, o GitHub Action executa os seguintes passos:
 ```
 
 ## Como utilizar
-
-1. Faça o push de uma atualização no CSV
+1. Abra o arquivo `atualizar_yaml.py` e edite as seguintes linhas:
+    -  valor = f"images/edicoes/2024/{valor}": mudando `2024` para o ano vigente do prêmio
+    - entrada['ano'] = '2024'  # Ano fixo: mudando `2024` para o ano vigente do prêmio
+       
+2. Faça o push de uma atualização no CSV
 
 Sempre que você fizer uma modificação no arquivo `dados.csv` e realizar um commit/push na branch main, o GitHub Action será executado automaticamente.
 
-2. Verifique o resultado
+3. Verifique o resultado
 
 Após a execução, o arquivo `projetos.yaml` será atualizado e comitado automaticamente no repositório.
